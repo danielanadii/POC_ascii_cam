@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+/* UI/UX Pro kit — Retro-Futurism checklist: deep black bg, monospace,
+   neon glow, CRT scanlines, glitch accents. */
+:root {
+  --phosphor: #00ff66;
+  --cyan: #00ffff;
+  --violet: #7c5cff;
+  --bg: #030304;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--bg);
+  color: #e8ffe8;
+  font-family: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  overflow: hidden;
+}
+
+/* CRT scanlines overlay */
+.crt::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.22) 0px,
+    rgba(0, 0, 0, 0.22) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+}
+
+.glow-text {
+  text-shadow: 0 0 12px currentColor, 0 0 40px rgba(0, 255, 102, 0.35);
+}
+
+.glow-cta {
+  box-shadow: 0 0 18px rgba(0, 255, 255, 0.35), inset 0 0 12px rgba(0, 255, 255, 0.12);
+}
+.glow-cta:hover {
+  box-shadow: 0 0 34px rgba(0, 255, 255, 0.65), inset 0 0 18px rgba(0, 255, 255, 0.25);
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes glitch-skew {
+  0%, 92%, 100% { transform: skewX(0deg); }
+  93% { transform: skewX(2deg) translateX(2px); }
+  95% { transform: skewX(-1.5deg) translateX(-2px); }
+  97% { transform: skewX(0.8deg); }
+}
+.glitch {
+  animation: glitch-skew 5s infinite;
+}
